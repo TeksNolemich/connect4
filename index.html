@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+
+  <p>Connect 4</p>
+  <h1 id="current"></h1>
+  <table class="gameboard">
+  	<tr id="row_1">
+		<td id="1"></td>
+		<td id="2"></td>
+		<td id="3"></td>
+		<td id="4"></td>
+		<td id="5"></td>
+		<td id="6"></td>
+		<td id="7"></td>
+	</tr>
+  	<tr id="row_2">
+		<td id="1"></td>
+		<td id="2"></td>
+		<td id="3"></td>
+		<td id="4"></td>
+		<td id="5"></td>
+		<td id="6"></td>
+		<td id="7"></td>
+	</tr>
+  	<tr id="row_3">
+		<td id="1"></td>
+		<td id="2"></td>
+		<td id="3"></td>
+		<td id="4"></td>
+		<td id="5"></td>
+		<td id="6"></td>
+		<td id="7"></td>
+	</tr>
+  	<tr id="row_4">
+		<td id="1"></td>
+		<td id="2"></td>
+		<td id="3"></td>
+		<td id="4"></td>
+		<td id="5"></td>
+		<td id="6"></td>
+		<td id="7"></td>
+	</tr>
+  	<tr id="row_5">
+		<td id="1"></td>
+		<td id="2"></td>
+		<td id="3"></td>
+		<td id="4"></td>
+		<td id="5"></td>
+		<td id="6"></td>
+		<td id="7"></td>
+	</tr>
+  	<tr id="row_6">
+		<td id="1"></td>
+		<td id="2"></td>
+		<td id="3"></td>
+		<td id="4"></td>
+		<td id="5"></td>
+		<td id="6"></td>
+		<td id="7"></td>
+	</tr>
+  	<tr id="row_7">
+		<td id="1"></td>
+		<td id="2"></td>
+		<td id="3"></td>
+		<td id="4"></td>
+		<td id="5"></td>
+		<td id="6"></td>
+		<td id="7"></td>
+	</tr>
+  </table>
+  <script src="jsFiles/connect4Algorithms.js"></script>
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script>
+
+
+$( document ).ready(function() {
+	var colClicked = null;
+	var color = ['Yellow', 'Red']
+	var win = false;
+	$(".gameboard").children().children().children().on('click', function() {
+
+		if (!win) {
+			//holds onto the column clicked
+			colClicked = this.id;
+			//refers to the entire column
+			var entireCol = $(".gameboard td:nth-child(" + this.id +")")	
+			var row = 0;
+			//loop over every row in the designated column; from bottom up
+			//returns the bottom most row with no color tile
+			//obtains that row number
+			for (var rowKey = 6; rowKey >= 0; rowKey--) {
+				if (!(entireCol[rowKey].outerHTML.includes('background-color'))) {
+					row = rowKey+1;
+					break;
+				} else {
+					continue;
+				}
+			}
+			//colors the appropriate tile
+			$(".gameboard tr:nth-child("+row+") td:nth-child(" + this.id + ")").css("background-color", color[currentPlayer.token]);
+
+			var wholeShabang = validColEntry(colClicked);
+			if (wholeShabang) {
+				console.log(currentPlayer.player);
+				win = true;
+				// console.log(currentPlayer.player, ' is the winner!!')
+			}
+		}
+		console.log(win, " < is there a winner")
+		if (win){
+			console.log(win, 'winner made')
+			if (currentPlayer.player === 'red') {
+				alert("Red is the Winner!");
+			} else {
+				alert("Yellow is the winner!")
+			}
+		}
+	});
+
+
+});
+
+  </script>
+</body>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+</html>

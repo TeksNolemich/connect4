@@ -1,0 +1,18 @@
+.gameboard {
+  width: 80%;
+}
+
+.gameboard tr td:hover { 
+  background: #e4e4e4; 
+  cursor: pointer; 
+}
+
+td {
+  width: 14.28%;
+  border: 6px solid #222;
+}
+td:after {
+  content: '';
+  display: block;
+  margin-top: 90%;
+}
